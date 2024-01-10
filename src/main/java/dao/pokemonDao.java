@@ -13,7 +13,6 @@ public class pokemonDao extends BaseDao {
 		
 		ArrayList<pokemon> pokemonList = new ArrayList<pokemon>();
 		
-		boolean isUpdate = false;
 
 		try {
 
