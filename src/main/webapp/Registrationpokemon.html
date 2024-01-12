@@ -146,7 +146,6 @@
     <div id="Stats">種族値の合計は720まで</div>
 
     <script>
-        document.getElementById("id").addEventListener("input", updateTotalStats);
         document.getElementById("hp").addEventListener("input", updateTotalStats);
         document.getElementById("attack").addEventListener("input", updateTotalStats);
         document.getElementById("defense").addEventListener("input", updateTotalStats);
@@ -155,7 +154,6 @@
         document.getElementById("speed").addEventListener("input", updateTotalStats);
 
         function updateTotalStats() {
-            const id = parseInt(document.getElementById("id").value) || 0;
             const hp = parseInt(document.getElementById("hp").value) || 0;
             const attack = parseInt(document.getElementById("attack").value) || 0;
             const defense = parseInt(document.getElementById("defense").value) || 0;
@@ -163,7 +161,7 @@
             const spdefense = parseInt(document.getElementById("spdefense").value) || 0;
             const speed = parseInt(document.getElementById("speed").value) || 0;
 
-            const totalStats = id + hp + attack + defense + spattack + spdefense + speed;
+            const totalStats = hp + attack + defense + spattack + spdefense + speed;
 
             document.getElementById("totalStats").innerText = `合計種族値: ${totalStats}`;
 
