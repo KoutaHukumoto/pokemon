@@ -36,7 +36,7 @@ public class RegistrationpokemonServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	
-        String name =request.getParameter("name"); //request.getParameter("name");
+        String name =request.getParameter("name"); 
         String type = request.getParameter("type");
         String skill1 = request.getParameter("skill1");
         String skill2 = request.getParameter("skill2");
