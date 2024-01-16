@@ -1,8 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,14 +26,17 @@ public class RegistrationpokemonServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // doGetの実装
+    }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// フォームからのデータを取得
-        String name = request.getParameter("name");
+	
+        String name =request.getParameter("name"); //request.getParameter("name");
         String type = request.getParameter("type");
         String skill1 = request.getParameter("skill1");
         String skill2 = request.getParameter("skill2");
@@ -46,30 +49,14 @@ public class RegistrationpokemonServlet extends HttpServlet {
         int spdefense = Integer.parseInt(request.getParameter("spdefense"));
         int speed = Integer.parseInt(request.getParameter("speed"));
 
-        // ここでデータを保存・処理するなどの実際の処理を実装
-        
+        response.setContentType("text/html; charset=UTF-8");
         pokemon pokemon = new pokemon(name, type,skill1,skill2,skill3,skill4,hp, attack, defense, spattack, spdefense, speed);
+		request.setAttribute("pokemon", pokemon);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Registrationpokemon.jsp");
+		dispatcher.forward(request, response);
 
-        // 応答
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<html>");
-        out.println("<head><title>登録完了</title></head>");
-        out.println("<body>");
-        out.println("<h2>ポケモンが登録されました</h2>");
-        out.println("<p>名前: " + name + "</p>");
-        out.println("<p>タイプ: " + type + "</p>");
-        out.println("<p>スキル1: " + skill1 + "</p>");
-        out.println("<p>スキル2: " + skill2 + "</p>");
-        out.println("<p>スキル3: " + skill3 + "</p>");
-        out.println("<p>スキル4: " + skill4 + "</p>");
-        out.println("<p>HP: " + hp + "</p>");
-        out.println("<p>攻撃: " + attack + "</p>");
-        out.println("<p>防御: " + defense + "</p>");
-        out.println("<p>特攻: " + spattack + "</p>");
-        out.println("<p>特防: " + spdefense + "</p>");
-        out.println("<p>速さ: " + speed + "</p>");
-        out.println("</body></html>");
+        //response.setContentType("text/html");
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

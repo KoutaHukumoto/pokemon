@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 public class pokemon implements Serializable {
 
-	private String name, type, Skill1,Skill2,Skill3,Skill4;
+	private String name, type, Skill1, Skill2, Skill3, Skill4;
 
 	private int id, hp, attack, defense, spattack, spdefense, speed;
 
-	public pokemon(String name, String type, String Skill1, String Skill2, String Skill3, String Skill4, int hp, int attack,
+	public pokemon(String name, String type, String Skill1, String Skill2, String Skill3, String Skill4, int hp,
+			int attack,
 			int defense, int spattack, int spdefense, int speed) {
 		this.name = name;
 		this.Skill1 = Skill1;
@@ -39,10 +40,6 @@ public class pokemon implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-
-
-
 
 	public int getId() {
 		return id;
