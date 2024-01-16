@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.pokemon"%>
 <%
-    Pokemon pokemon = (pokemon) request.getAttribute("pokemon");
+    pokemon pokemon = (pokemon) request.getAttribute("pokemon");
 %>
 <!DOCTYPE html>
 <html>
