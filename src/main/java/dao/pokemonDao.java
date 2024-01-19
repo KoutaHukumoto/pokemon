@@ -31,14 +31,13 @@ public class pokemonDao extends BaseDao {
 				String Skill2 = rs.getString("Skill2");
 				String Skill3 = rs.getString("Skill3");
 				String Skill4 = rs.getString("Skill4");
-				int id = rs.getInt("id");
 				int hp = rs.getInt("hp");
 				int attack = rs.getInt("attack");
-				int defense = rs.getInt("defense");
+				int defence = rs.getInt("defence");
 				int spattack = rs.getInt("spattack");
-				int spdefense = rs.getInt("spdegense");
+				int spdefence = rs.getInt("spdegence");
 				int speed = rs.getInt("speed");
-				pokemonList.add(new pokemon(name, type, Skill1,Skill2,Skill3,Skill4, hp, attack, defense, spattack, spdefense, speed));
+				pokemonList.add(new pokemon(name, type, Skill1,Skill2,Skill3,Skill4, hp, attack, defence, spattack, spdefence, speed));
 			}
 
 		} catch (Exception e) {

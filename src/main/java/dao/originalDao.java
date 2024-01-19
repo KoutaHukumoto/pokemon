@@ -14,9 +14,9 @@ public class originalDao extends BaseDao {
 
 			this.connect();
 
-			String sql = "INSERT INTO pokemon(name, type, Skill1,Skill2,Skill3,Skill4, "
-					+ " hp, attack, defense, spattack, spdefense, speed) "
-					+ "VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)";
+			String sql = "INSERT INTO pokemon(id,name, type, Skill1,Skill2,Skill3,Skill4, "
+					+ " hp, attack, defence, spattack, spdefence, speed) "
+					+ "VALUE(30,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
@@ -28,18 +28,16 @@ public class originalDao extends BaseDao {
 			ps.setString(6, pokemon.getSkill4());
 			ps.setInt(7, pokemon.getHp());
 			ps.setInt(8, pokemon.getAttack());
-			ps.setInt(9, pokemon.getDefense());
+			ps.setInt(9, pokemon.getDefence());
 			ps.setInt(10, pokemon.getSpattack());
-			ps.setInt(11, pokemon.getSpdefense());
+			ps.setInt(11, pokemon.getSpdefence());
 			ps.setInt(12, pokemon.getSpeed());
-			
-
 			int record = ps.executeUpdate();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			isUpdate = true;
+
 			try {
 				this.disConnect();
 			} catch (SQLException e) {

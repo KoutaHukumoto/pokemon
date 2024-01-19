@@ -1,177 +1,107 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>オリジナルポケモン登録</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-            background-color: #ffcc00;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        label {
-            display: block;
-            margin-top: 1px;
-            margin-bottom: 0px;
-            color: #666;
-            width: 45%;
-        }
-
-        input, select {
-            width: 45%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 1px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            background-color: #4caf50;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        #totalStats {
-            margin-top: 20px;
-            color: #666;
-            font-weight: bold;
-            font-size: 1.2em;
-            width: 100%;
-        }
-
-        #Stats {
-            color: #666;
-            font-size: 1.1em;
-            width: 100%;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<title>オリジナルポケモン登録</title>
+	<link rel="stylesheet" href="css/base.css">
 </head>
+
 <body>
+	<h1>オリジナルポケモン登録</h1>
 
-    <h1>オリジナルポケモン登録</h1>
+	<form action="RegistrationpokemonServlet" method="post">
 
-    <form action="RegistrationpokemonServlet" method="post">
+		<label for="name">名前:</label>
+		<input type="text" id="name" name="name" required>
 
-        <label for="name">名前:</label>
-        <input type="text" id="name" name="name" required>
+		<label for="type">タイプ:</label>
+		<select id="type" name="type" required>
+			<option value="ノーマル">ノーマル</option>
+			<option value="ほのお">ほのお</option>
+			<option value="みず">みず</option>
+			<option value="でんき">でんき</option>
+			<option value="くさ">くさ</option>
+			<option value="こおり">こおり</option>
+			<option value="かくとう">かくとう</option>
+			<option value="どく">どく</option>
+			<option value="じめん">じめん</option>
+			<option value="ひこう">ひこう</option>
+			<option value="エスパー">エスパー</option>
+			<option value="むし">むし</option>
+			<option value="いわ">いわ</option>
+			<option value="ゴースト">ゴースト</option>
+			<option value="ドラゴン">ドラゴン</option>
+			<option value="あく">あく</option>
+			<option value="はがね">はがね</option>
+			<option value="フェアリー">フェアリー</option>
+		</select>
 
-        <label for="type">タイプ:</label>
-        <select id="type" name="type" required>
-            <option value="ノーマル">ノーマル</option>
-            <option value="ほのお">ほのお</option>
-            <option value="みず">みず</option>
-            <option value="でんき">でんき</option>
-            <option value="くさ">くさ</option>
-            <option value="こおり">こおり</option>
-            <option value="かくとう">かくとう</option>
-            <option value="どく">どく</option>
-            <option value="じめん">じめん</option>
-            <option value="ひこう">ひこう</option>
-            <option value="エスパー">エスパー</option>
-            <option value="むし">むし</option>
-            <option value="いわ">いわ</option>
-            <option value="ゴースト">ゴースト</option>
-            <option value="ドラゴン">ドラゴン</option>
-            <option value="あく">あく</option>
-            <option value="はがね">はがね</option>
-            <option value="フェアリー">フェアリー</option>
-        </select>
+		<label for="skill1">技1:</label>
+		<input type="text" id="skill1" name="skill1" required>
 
-        <label for="skill1">技1:</label>
-        <input type="text" id="skill1" name="skill1" required>
+		<label for="skill2">技2:</label>
+		<input type="text" id="skill2" name="skill2" required>
 
-        <label for="skill2">技2:</label>
-        <input type="text" id="skill2" name="skill2" required>
+		<label for="skill3">技3:</label>
+		<input type="text" id="skill3" name="skill3" required>
 
-        <label for="skill3">技3:</label>
-        <input type="text" id="skill3" name="skill3" required>
+		<label for="skill4">技4:</label>
+		<input type="text" id="skill4" name="skill4" required>
 
-        <label for="skill4">技4:</label>
-        <input type="text" id="skill4" name="skill4" required>
+		<label for="hp">HP:</label>
+		<input type="number" id="hp" name="hp" required max="200">
 
-        <label for="hp">HP:</label>
-        <input type="number" id="hp" name="hp" required max="200">
+		<label for="attack">攻撃:</label>
+		<input type="number" id="attack" name="attack" required min="1" max="200">
 
-        <label for="attack">攻撃:</label>
-        <input type="number" id="attack" name="attack" required min="1" max="200">
- 
-        <label for="defense">防御:</label>
-        <input type="number" id="defense" name="defense" required min="1" max="200">
+		<label for="defence">防御:</label>
+		<input type="number" id="defence" name="defence" required min="1" max="200">
 
-        <label for="spattack">特攻:</label>
-        <input type="number" id="spattack" name="spattack" required min="1" max="200">
+		<label for="spattack">特攻:</label>
+		<input type="number" id="spattack" name="spattack" required min="1" max="200">
 
-        <label for="spdefense">特防:</label>
-        <input type="number" id="spdefense" name="spdefense" required min="1" max="200">
+		<label for="spdefence">特防:</label>
+		<input type="number" id="spdefence" name="spdefence" required min="1" max="200">
 
-        <label for="speed">速さ:</label>
-        <input type="number" id="speed" name="speed" required min="1" max="200">
+		<label for="speed">速さ:</label>
+		<input type="number" id="speed" name="speed" required min="1" max="200">
 
-        <input type="submit" value="登録">
+		<input type="submit" value="登録">
 
-    </form>
+	</form>
 
-    <div id="totalStats">合計種族値: 0</div>
-    <div id="Stats">種族値の合計は720まで</div>
-    
-    <a href="pokemon.html">戻る</a>
+	<div id="totalStats">合計種族値: 0</div>
+	<div id="Stats">種族値の合計は720まで</div>
 
-    <script>
-        document.getElementById("hp").addEventListener("input", updateTotalStats);
-        document.getElementById("attack").addEventListener("input", updateTotalStats);
-        document.getElementById("defense").addEventListener("input", updateTotalStats);
-        document.getElementById("spattack").addEventListener("input", updateTotalStats);
-        document.getElementById("spdefense").addEventListener("input", updateTotalStats);
-        document.getElementById("speed").addEventListener("input", updateTotalStats);
+	<a href="pokemon.html">戻る</a>
 
-        function updateTotalStats() {
-            const hp = parseInt(document.getElementById("hp").value) || 0;
-            const attack = parseInt(document.getElementById("attack").value) || 0;
-            const defense = parseInt(document.getElementById("defense").value) || 0;
-            const spattack = parseInt(document.getElementById("spattack").value) || 0;
-            const spdefense = parseInt(document.getElementById("spdefense").value) || 0;
-            const speed = parseInt(document.getElementById("speed").value) || 0;
+	<script>
+		document.getElementById("hp").addEventListener("input", updateTotalStats);
+		document.getElementById("attack").addEventListener("input", updateTotalStats);
+		document.getElementById("defence").addEventListener("input", updateTotalStats);
+		document.getElementById("spattack").addEventListener("input", updateTotalStats);
+		document.getElementById("spdefence").addEventListener("input", updateTotalStats);
+		document.getElementById("speed").addEventListener("input", updateTotalStats);
 
-            const totalStats = hp + attack + defense + spattack + spdefense + speed;
+		function updateTotalStats() {
+			const hp = parseInt(document.getElementById("hp").value) || 0;
+			const attack = parseInt(document.getElementById("attack").value) || 0;
+			const defence = parseInt(document.getElementById("defence").value) || 0;
+			const spattack = parseInt(document.getElementById("spattack").value) || 0;
+			const spdefence = parseInt(document.getElementById("spdefence").value) || 0;
+			const speed = parseInt(document.getElementById("speed").value) || 0;
 
-            document.getElementById("totalStats").innerText = `合計種族値: ${totalStats}`;
+			const totalStats = hp + attack + defense + spattack + spdefense + speed;
 
-            // 登録ボタンの有効・無効を切り替える
-            const submitButton = document.querySelector('input[type="submit"]');
-            submitButton.disabled = totalStats > 720;
-        }
-    </script>
+			document.getElementById("totalStats").innerText = `合計種族値: ${totalStats}`;
+
+			// 登録ボタンの有効・無効を切り替える
+			const submitButton = document.querySelector('input[type="submit"]');
+			submitButton.disabled = totalStats > 720;
+		}
+	</script>
 
 </body>
+
 </html>

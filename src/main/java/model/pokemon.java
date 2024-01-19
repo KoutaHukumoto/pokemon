@@ -6,11 +6,11 @@ public class pokemon implements Serializable {
 
 	private String name, type, Skill1, Skill2, Skill3, Skill4;
 
-	private int id, hp, attack, defense, spattack, spdefense, speed;
+	private int id, hp, attack, defence, spattack, spdefence, speed;
 
 	public pokemon(String name, String type, String Skill1, String Skill2, String Skill3, String Skill4, int hp,
 			int attack,
-			int defense, int spattack, int spdefense, int speed) {
+			int defence, int spattack, int spdefence, int speed) {
 		this.name = name;
 		this.Skill1 = Skill1;
 		this.Skill2 = Skill2;
@@ -19,9 +19,9 @@ public class pokemon implements Serializable {
 		this.type = type;
 		this.hp = hp;
 		this.attack = attack;
-		this.defense = defense;
+		this.defence = defence;
 		this.spattack = spattack;
-		this.spdefense = spdefense;
+		this.spdefence = spdefence;
 		this.speed = speed;
 	}
 
@@ -65,12 +65,12 @@ public class pokemon implements Serializable {
 		this.attack = attack;
 	}
 
-	public int getDefense() {
-		return defense;
+	public int getDefence() {
+		return defence;
 	}
 
-	public void setDefense(int defense) {
-		this.defense = defense;
+	public void setDefence(int defence) {
+		this.defence = defence;
 	}
 
 	public int getSpattack() {
@@ -81,12 +81,12 @@ public class pokemon implements Serializable {
 		this.spattack = spattack;
 	}
 
-	public int getSpdefense() {
-		return spdefense;
+	public int getSpdefence() {
+		return spdefence;
 	}
 
-	public void setSpdefense(int spdefense) {
-		this.spdefense = spdefense;
+	public void setSpdefence(int spdefence) {
+		this.spdefence = spdefence;
 	}
 
 	public int getSpeed() {
