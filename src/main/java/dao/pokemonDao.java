@@ -25,6 +25,7 @@ public class pokemonDao extends BaseDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
+				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				String type = rs.getString("type");
 				String Skill1 = rs.getString("Skill1");
@@ -37,7 +38,7 @@ public class pokemonDao extends BaseDao {
 				int spattack = rs.getInt("spattack");
 				int spdefence = rs.getInt("spdefence");
 				int speed = rs.getInt("speed");
-				pokemonList.add(new pokemon(name, type, Skill1,Skill2,Skill3,Skill4, hp, attack, defence, spattack, spdefence, speed));
+				pokemonList.add(new pokemon(id,name, type, Skill1,Skill2,Skill3,Skill4, hp, attack, defence, spattack, spdefence, speed));
 			}
 
 		} catch (Exception e) {

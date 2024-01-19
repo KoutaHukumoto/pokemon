@@ -8,6 +8,24 @@ public class pokemon implements Serializable {
 
 	private int id, hp, attack, defence, spattack, spdefence, speed;
 
+	
+	public pokemon(int id,String name, String type, String Skill1, String Skill2, String Skill3, String Skill4, int hp,
+			int attack,
+			int defence, int spattack, int spdefence, int speed) {
+		this.id = id;
+		this.name = name;
+		this.Skill1 = Skill1;
+		this.Skill2 = Skill2;
+		this.Skill3 = Skill3;
+		this.Skill4 = Skill4;
+		this.type = type;
+		this.hp = hp;
+		this.attack = attack;
+		this.defence = defence;
+		this.spattack = spattack;
+		this.spdefence = spdefence;
+		this.speed = speed;
+	}
 	public pokemon(String name, String type, String Skill1, String Skill2, String Skill3, String Skill4, int hp,
 			int attack,
 			int defence, int spattack, int spdefence, int speed) {
