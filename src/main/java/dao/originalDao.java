@@ -14,9 +14,9 @@ public class originalDao extends BaseDao {
 
 			this.connect();
 
-			String sql = "INSERT INTO pokemon(id,name, type, Skill1,Skill2,Skill3,Skill4, "
+			String sql = "INSERT INTO pokemon(name, type, Skill1,Skill2,Skill3,Skill4, "
 					+ " hp, attack, defence, spattack, spdefence, speed) "
-					+ "VALUE(30,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "VALUE(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 

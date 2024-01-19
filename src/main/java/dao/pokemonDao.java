@@ -35,7 +35,7 @@ public class pokemonDao extends BaseDao {
 				int attack = rs.getInt("attack");
 				int defence = rs.getInt("defence");
 				int spattack = rs.getInt("spattack");
-				int spdefence = rs.getInt("spdegence");
+				int spdefence = rs.getInt("spdefence");
 				int speed = rs.getInt("speed");
 				pokemonList.add(new pokemon(name, type, Skill1,Skill2,Skill3,Skill4, hp, attack, defence, spattack, spdefence, speed));
 			}

@@ -85,12 +85,12 @@
 		document.getElementById("speed").addEventListener("input", updateTotalStats);
 
 		function updateTotalStats() {
-			const hp = parseInt(document.getElementById("hp").value) || 0;
-			const attack = parseInt(document.getElementById("attack").value) || 0;
-			const defence = parseInt(document.getElementById("defence").value) || 0;
-			const spattack = parseInt(document.getElementById("spattack").value) || 0;
-			const spdefence = parseInt(document.getElementById("spdefence").value) || 0;
-			const speed = parseInt(document.getElementById("speed").value) || 0;
+			const hp = parseInt(document.getElementById("hp").value);
+			const attack = parseInt(document.getElementById("attack").value) ;
+			const defence = parseInt(document.getElementById("defence").value) ;
+			const spattack = parseInt(document.getElementById("spattack").value);
+			const spdefence = parseInt(document.getElementById("spdefence").value);
+			const speed = parseInt(document.getElementById("speed").value);
 
 			const totalStats = hp + attack + defence + spattack + spdefence + speed;
 
