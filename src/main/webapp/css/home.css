@@ -6,6 +6,13 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	background-image: url("../画像/thimo-pedersen-dip9IIwUK6w-unsplash.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
 }
 
 h1 {
@@ -33,5 +40,6 @@ a:hover {
 }
 
 p {
-	margin: 20px;
+	margin: 60px 20px 40px 20px;
+	font-weight: bold;
 }
