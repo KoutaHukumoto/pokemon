@@ -79,7 +79,26 @@
 	</div>
 
 	<script>
-		
+
+		window.addEventListener('devtoolschange', function (event) {
+			if (event.detail.isOpen) {
+				alert('デベロッパーツールは使用できません。');
+			}
+		});
+
+		window.addEventListener('contextmenu', function (event) {
+			event.preventDefault();
+		});
+
+		window.addEventListener('keydown', function (event) {
+			if (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) {
+				event.preventDefault();
+			}
+			if (event.key === 'F12') {
+				event.preventDefault();
+			}
+		});
+
 		document.getElementById("hp").addEventListener("input", updateTotalStats);
 		document.getElementById("attack").addEventListener("input", updateTotalStats);
 		document.getElementById("defence").addEventListener("input", updateTotalStats);
@@ -88,12 +107,12 @@
 		document.getElementById("speed").addEventListener("input", updateTotalStats);
 
 		function updateTotalStats() {
-			const hp = parseInt(document.getElementById("hp").value)|| 0;
-			const attack = parseInt(document.getElementById("attack").value)|| 0 ;
-			const defence = parseInt(document.getElementById("defence").value)|| 0 ;
-			const spattack = parseInt(document.getElementById("spattack").value)|| 0;
-			const spdefence = parseInt(document.getElementById("spdefence").value)|| 0;
-			const speed = parseInt(document.getElementById("speed").value)|| 0;
+			const hp = parseInt(document.getElementById("hp").value) || 0;
+			const attack = parseInt(document.getElementById("attack").value) || 0;
+			const defence = parseInt(document.getElementById("defence").value) || 0;
+			const spattack = parseInt(document.getElementById("spattack").value) || 0;
+			const spdefence = parseInt(document.getElementById("spdefence").value) || 0;
+			const speed = parseInt(document.getElementById("speed").value) || 0;
 
 			const totalStats = hp + attack + defence + spattack + spdefence + speed;
 
