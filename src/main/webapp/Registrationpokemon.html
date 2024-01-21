@@ -5,14 +5,15 @@
 	<meta charset="UTF-8">
 	<title>オリジナルポケモン登録</title>
 	<link rel="stylesheet" href="css/base.css">
+	<script src="js/base.js"></script>
 </head>
 
 <body>
 	<h1>オリジナルポケモン登録</h1>
 
-	<form action="RegistrationpokemonServlet" method="post">
+	<form action="RegistrationpokemonServlet" method="post"onsubmit="return validateForm()">
 
-		<label for="name">名前:</label>
+		<label for="name">名前(10文字以内):</label>
 		<input type="text" id="name" name="name" required>
 
 		<label for="type">タイプ:</label>
@@ -78,51 +79,7 @@
 		<a href="pokemon.html">ホームへ戻る</a>
 	</div>
 
-	<script>
-
-		window.addEventListener('devtoolschange', function (event) {
-			if (event.detail.isOpen) {
-				alert('デベロッパーツールは使用できません。');
-			}
-		});
-
-		window.addEventListener('contextmenu', function (event) {
-			event.preventDefault();
-		});
-
-		window.addEventListener('keydown', function (event) {
-			if (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) {
-				event.preventDefault();
-			}
-			if (event.key === 'F12') {
-				event.preventDefault();
-			}
-		});
-
-		document.getElementById("hp").addEventListener("input", updateTotalStats);
-		document.getElementById("attack").addEventListener("input", updateTotalStats);
-		document.getElementById("defence").addEventListener("input", updateTotalStats);
-		document.getElementById("spattack").addEventListener("input", updateTotalStats);
-		document.getElementById("spdefence").addEventListener("input", updateTotalStats);
-		document.getElementById("speed").addEventListener("input", updateTotalStats);
-
-		function updateTotalStats() {
-			const hp = parseInt(document.getElementById("hp").value) || 0;
-			const attack = parseInt(document.getElementById("attack").value) || 0;
-			const defence = parseInt(document.getElementById("defence").value) || 0;
-			const spattack = parseInt(document.getElementById("spattack").value) || 0;
-			const spdefence = parseInt(document.getElementById("spdefence").value) || 0;
-			const speed = parseInt(document.getElementById("speed").value) || 0;
-
-			const totalStats = hp + attack + defence + spattack + spdefence + speed;
-
-			document.getElementById("totalStats").innerText = `合計種族値: ${totalStats}`;
-
-			// 登録ボタンの有効・無効を切り替える
-			const submitButton = document.querySelector('input[type="submit"]');
-			submitButton.disabled = totalStats > 720;
-		}
-	</script>
+	<script src="js/registration.js"></script>
 
 </body>
 

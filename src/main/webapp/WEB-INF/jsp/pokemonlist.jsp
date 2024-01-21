@@ -11,6 +11,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 <meta charset="UTF-8">
 <title>登録ポケモンリスト</title>
 <link rel="stylesheet" href="css/list.css">
+<script src="js/base.js"></script>
 </head>
 <body>
 	<h2>登録ポケモンリスト</h2>

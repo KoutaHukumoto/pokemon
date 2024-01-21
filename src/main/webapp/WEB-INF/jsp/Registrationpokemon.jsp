@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <title>オリジナルポケモン登録</title>
     <link rel="stylesheet" href="css/base.css">
+    <script src="js/base.js"></script>
 </head>
 <body>
     <h2>ポケモンが登録されました</h2>
