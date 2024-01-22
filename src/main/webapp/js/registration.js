@@ -12,8 +12,6 @@
             return false; 
         }
 
-
-
         return true; 
     }
 
@@ -36,7 +34,6 @@
 
 			document.getElementById("totalStats").innerText = `合計種族値: ${totalStats}`;
 
-			// 登録ボタンの有効・無効を切り替える
 			const submitButton = document.querySelector('input[type="submit"]');
 			submitButton.disabled = totalStats > 720;
 		}

@@ -142,6 +142,8 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 			</table>
 		</div>
 	</div>
+	
+	
 
 	<div class="home">
 		<a href="pokemon.html">ホームへ戻る</a>
