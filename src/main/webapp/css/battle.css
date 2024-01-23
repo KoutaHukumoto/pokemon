@@ -27,6 +27,8 @@ body {
 .result {
 	width: 30%;
 	background-color: #f5f5f5;
+	overflow: auto;
+    cursor: pointer;
 }
 
 .pokemonally {

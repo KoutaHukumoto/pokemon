@@ -11,6 +11,89 @@ pokemon getenemypokemon = (pokemon) session.getAttribute("getenemypokemon");
 <meta charset="UTF-8">
 <title>ポケモンバトル</title>
 <script src="js/base.js"></script>
+   <script>
+
+        var allyhp = <%=getpokemon.getHp()%>; 
+        var allyname = "<%=getpokemon.getName()%>";
+        var allytype = "<%=getpokemon.getType()%>";
+        var allyattack = <%=getpokemon.getAttack()%>;
+        var allydefence = <%=getpokemon.getDefence()%>;
+        var allyspattack = <%=getpokemon.getSpattack()%>;
+        var allyspdefence = <%=getpokemon.getSpdefence()%>;
+        var allySpeed = <%=getpokemon.getSpeed()%>;
+
+        var enemyhp = <%=getenemypokemon.getHp()%>;
+        var enemyname = "<%=getenemypokemon.getName()%>";
+        var enemytype = "<%=getenemypokemon.getType()%>";
+        var enemyattack = <%=getenemypokemon.getAttack()%>;
+        var enemydefence = <%=getenemypokemon.getDefence()%>;
+        var enemyspattack = <%=getenemypokemon.getSpattack()%>;
+        var enemyspdefence = <%=getenemypokemon.getSpdefence()%>;
+        var enemySpeed = <%=getenemypokemon.getSpeed()%>;
+        var enemyskill = "<%=getenemypokemon.getSkill1()%>"; 
+
+        function useSkill(skillName) {
+			if((enemyhp<=0)||(allyhp<=0)){
+					return;
+				}   
+            var turn = "true";
+            if (allySpeed >= enemySpeed) {
+                pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName, turn);
+            } else {
+                pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill, turn);
+            }
+        }
+
+        function pokemonbattleLogic(name, attack,enemyname, defence, skillName, turn) {
+            var damage = (((attack / 2) + 100) - defence);
+
+            var resultDiv = document.getElementById("result");
+            var pElement = document.createElement("p");
+            pElement.textContent = name + "の" + skillName + "！"+ enemyname +"に" + damage + "のダメージ！";
+            resultDiv.appendChild(pElement);
+
+            if (name === allyname) { 
+                enemyhp = enemyhp - damage;
+                updateenemyhp(enemyhp,turn,name);
+            } else {
+                allyhp = allyhp - damage;
+                updateallyhp(allyhp,turn,name);
+            }
+
+        }
+
+        function updateallyhp(newHp,turn,name) {
+            var allyHpMeter = document.getElementById("allyhpmeter");
+            allyHpMeter.value = newHp;
+            victory(turn,newHp,name);
+        }
+
+        function updateenemyhp(newHp,turn,name) {
+            var enemyHpMeter = document.getElementById("enemyhpmeter");
+            enemyHpMeter.value = newHp;
+            victory(turn,newHp,name);
+        }
+
+        function victory(turn,hp,name){
+			if(hp<=0){
+				  var resultDiv = document.getElementById("result");
+		            var pElement = document.createElement("p");
+		            pElement.textContent = name + "の勝利！" + name +"は50の経験値獲得！";
+		            resultDiv.appendChild(pElement);
+		            return;
+				}
+            if (turn === "true") { 
+                turn = "false";
+                if (name === allyname) {
+                    pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill, turn);
+                } else {
+                    pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName, turn);
+                }
+            }
+          }
+        
+
+    </script>
 <link rel="stylesheet" href="css/battle.css">
 </head>
 <body>
@@ -21,16 +104,16 @@ pokemon getenemypokemon = (pokemon) session.getAttribute("getenemypokemon");
 				名前:<%=getpokemon.getName()%>
 				HP：
 				<meter low="0.3" high="0.7" optimum="0.8"
-					style="width: 300px; height: 25px;" value="<%=getpokemon.getHp()%>"
-					min="0" max="<%=getpokemon.getHp()%>"></meter>
+					style="width: 180px; height: 25px;" value="<%=getpokemon.getHp()%>"
+					min="0" max="<%=getpokemon.getHp()%>" id="allyhpmeter"></meter>
 			</h3>
 		</div>
 		<img class="allyimg" src="画像/pika○○2.jpg" alt="ポケモン">
 		<div class="skill">
-			<button><%=getpokemon.getSkill1()%></button>
-			<button><%=getpokemon.getSkill2()%></button>
-			<button><%=getpokemon.getSkill3()%></button>
-			<button><%=getpokemon.getSkill4()%></button>
+    <button onclick="useSkill('<%=getpokemon.getSkill1()%>')"><%=getpokemon.getSkill1()%></button>
+    <button onclick="useSkill('<%=getpokemon.getSkill2()%>')"><%=getpokemon.getSkill2()%></button>
+    <button onclick="useSkill('<%=getpokemon.getSkill3()%>')"><%=getpokemon.getSkill3()%></button>
+    <button onclick="useSkill('<%=getpokemon.getSkill4()%>')"><%=getpokemon.getSkill4()%></button>
 		</div>
 		<div class="pokemonallies">
 			<table>
@@ -55,7 +138,7 @@ pokemon getenemypokemon = (pokemon) session.getAttribute("getenemypokemon");
 			</table>
 		</div>
 	</div>
-	<div class="result">
+	<div class="result" id="result">
 		<h3>バトル経過</h3>
 	</div>
 
@@ -63,12 +146,12 @@ pokemon getenemypokemon = (pokemon) session.getAttribute("getenemypokemon");
 		<h3>敵のポケモン</h3>
 		<div class="enemynamebox">
 			<h3>
-				名前:<%=getenemypokemon.getName()%>
+				 名前:<%=getenemypokemon.getName()%>
 				HP：
 				<meter low="0.3" high="0.7" optimum="0.8"
-					style="width: 300px; height: 25px;"
+					style="width: 180px; height: 25px;"
 					value="<%=getenemypokemon.getHp()%>" min="0"
-					max="<%=getenemypokemon.getHp()%>"></meter>
+					max="<%=getenemypokemon.getHp()%>" id="enemyhpmeter"></meter>
 			</h3>
 		</div>
 		<img class="enemyimg" src="画像/pika○○.jpg" alt="敵ポケモン">
