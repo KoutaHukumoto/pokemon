@@ -14,6 +14,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 <link rel="stylesheet" href="css/battlelist.css">
 <script src="js/base.js"></script>
 <script src="js/battlelist.js"></script>
+</head>
 <body>
 	<h2>戦えるポケモン一覧</h2>
 	<div class="battle-container">
@@ -143,6 +144,9 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 		</div>
 	</div>
 	
+	<div class="home">
+	<button onclick="startBattle()">バトル開始！</button>
+	</div>
 	
 
 	<div class="home">

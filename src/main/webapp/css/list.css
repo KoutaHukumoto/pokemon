@@ -7,7 +7,7 @@ body {
     background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* 画面全体の高さを占めるように設定 */
+    min-height: 100vh; 
 }
 
 h2 {
@@ -32,10 +32,10 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+	background-color: #4CAF50;
+	color: white;
 }
 
-/* Alternating row colors for better readability */
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -44,7 +44,6 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-/* リンクをページの一番下に配置 */
 .home{
     margin-top: auto;
     text-align: center;

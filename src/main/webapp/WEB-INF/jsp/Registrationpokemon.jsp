@@ -26,6 +26,6 @@
     <p>特攻: <%=pokemon.getSpattack()%></p>
     <p>特防: <%=pokemon.getSpdefence()%></p>
     <p>速さ: <%=pokemon.getSpeed()%></p>
-    <a href="pokemon.html">戻る</a>
+    <a href="pokemon.html">ホームへ戻る</a>
 </body>
 </html>
