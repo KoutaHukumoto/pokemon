@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class pokemon implements Serializable {
 
-	private String name, type, Skill1, Skill2, Skill3, Skill4;
+	private String name, type, Skill1, Skill2, Skill3, Skill4,SkillName;
 
-	private int id, hp, attack, defence, spattack, spdefence, speed;
+	private int id, hp, attack, defence, spattack, spdefence, speed,dmg;
 
 	
 	public pokemon(int id,String name, String type, String Skill1, String Skill2, String Skill3, String Skill4, int hp,
@@ -41,6 +41,12 @@ public class pokemon implements Serializable {
 		this.spattack = spattack;
 		this.spdefence = spdefence;
 		this.speed = speed;
+	}
+	
+	public pokemon(String SkillName,String type, int dmg) {
+		this.SkillName = SkillName;
+		this.type = type;
+	    this.dmg = dmg;
 	}
 
 	public String getName() {
@@ -145,6 +151,18 @@ public class pokemon implements Serializable {
 
 	public void setSkill4(String skill4) {
 		Skill4 = skill4;
+	}
+	public String getSkillName() {
+		return SkillName;
+	}
+	public void setSkillName(String skillName) {
+		SkillName = skillName;
+	}
+	public int getDmg() {
+		return dmg;
+	}
+	public void setDmg(int dmg) {
+		this.dmg = dmg;
 	}
 
 }

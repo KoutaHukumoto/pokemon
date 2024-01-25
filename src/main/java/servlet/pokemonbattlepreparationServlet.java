@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.pokemonDao;
+import dao.skillDao;
 import model.pokemon;
 
 /**
@@ -53,11 +54,16 @@ public class pokemonbattlepreparationServlet extends HttpServlet {
 		String pokemonname2 = request.getParameter("pokemonname2");
 
 		pokemonDao pokemondao = new pokemonDao();
+		skillDao skilldao = new skillDao();
 
 		ArrayList<pokemon> pokemonlist = pokemondao.findAll();
+		ArrayList<pokemon> skilllist = skilldao.findAlls();
 
 		pokemon getpokemon = null;
 		pokemon getenemypokemon = null;
+		
+		ArrayList<pokemon> getpokemonskill = null;
+		ArrayList<pokemon> getenemypokemonskill = null;
 
 		for (pokemon mpokemon : pokemonlist) {
 		    if (mpokemon.getName().equals(pokemonname1)) {
@@ -75,6 +81,24 @@ public class pokemonbattlepreparationServlet extends HttpServlet {
 		                mpokemon.getDefence(), mpokemon.getSpattack(), mpokemon.getSpdefence(),
 		                mpokemon.getSpeed());
 		    }
+		}
+		
+		for (pokemon skill : skilllist) {
+			if (skill.getSkillName().equals(getpokemon.getSkill1())
+					||skill.getSkillName().equals(getpokemon.getSkill2())
+					||skill.getSkillName().equals(getpokemon.getSkill3())
+					||skill.getSkillName().equals(getpokemon.getSkill4())){
+				getpokemonskill.add(new pokemon(skill.getName(),skill.getType(),skill.getDmg()));
+				
+			}
+
+			if (skill.getSkillName().equals(getenemypokemon.getSkill1())
+					||skill.getSkillName().equals(getpokemon.getSkill2())
+					||skill.getSkillName().equals(getpokemon.getSkill3())
+					||skill.getSkillName().equals(getpokemon.getSkill4())){
+				getenemypokemonskill.add(new pokemon(skill.getName(),skill.getType(),skill.getDmg()));
+
+			}
 		}
 
 		HttpSession session = request.getSession();
