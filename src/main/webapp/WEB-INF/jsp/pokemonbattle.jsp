@@ -36,6 +36,28 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
         var enemySpeed = <%=getenemypokemon.getSpeed()%>;
         var enemyskill = "<%=getenemypokemon.getSkill1()%>"; 
 
+        var skillNa = [
+            <% for (pokemon skill : getpokemonskill) { %>
+                "<%= skill.getSkillName() %>",
+            <% } %>
+        ];
+
+        var skillDmg = [
+            <% for (pokemon skill : getpokemonskill) { %>
+                <%= skill.getDmg() %>,
+            <% } %>
+        ];
+
+        var skillType = [
+            <% for (pokemon skill : getpokemonskill) { %>
+                "<%= skill.getType() %>",
+            <% } %>
+        ];
+
+
+
+
+
         function useSkill(skillName) {
             if (enemyhp <= 0 || allyhp <= 0) {
                 return;
@@ -50,11 +72,12 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
         }
 
         function pokemonbattleLogic(name, attack,enemyname, defence, skillName) {
+ 
             var damage = ((50*attack)/defence/50)+20;
 
             var resultDiv = document.getElementById("result");
             var pElement = document.createElement("p");
-            pElement.textContent = skill+name + "の" + skillName + "！"+ enemyname +"に" + damage + "のダメージ！";
+            pElement.textContent = name + "の" + skillName + "！"+ enemyname +"に" + damage + "のダメージ！";
             resultDiv.appendChild(pElement);
 
             if (name === allyname) { 
@@ -104,6 +127,15 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
         function selectpokemon() {
             window.location.href = "pokemonBattleServlet";
         }
+
+        function skill(name) {
+            for (var i = 0; i < skillNa.length; i++) {
+                if (name === skillNa[i]) {
+                    return skillDmg[i];
+                }
+            }
+        }
+        
         
     </script>
 <link rel="stylesheet" href="css/battle.css">

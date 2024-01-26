@@ -24,14 +24,13 @@ public class pokemonLogic {
 		ArrayList<pokemon> pokemonskillList = new ArrayList<pokemon>();
 
 		for (pokemon skill : skilllist) {
-			if ((skill.getSkillName().equals(getpokemon.getSkill1()))
-					|| (skill.getSkillName().equals(getpokemon.getSkill2()))
-					|| (skill.getSkillName().equals(getpokemon.getSkill3()))
-					|| (skill.getSkillName().equals(getpokemon.getSkill4()))) {
-				pokemonskillList.add(new pokemon(skill.getName(), skill.getType(), skill.getDmg()));
+			if (skill.getSkillName().equals(getpokemon.getSkill1()) ||
+				    skill.getSkillName().equals(getpokemon.getSkill2()) ||
+				    skill.getSkillName().equals(getpokemon.getSkill3()) ||
+				    skill.getSkillName().equals(getpokemon.getSkill4()))  {
+				pokemonskillList.add(new pokemon(skill.getSkillName(), skill.getType(), skill.getDmg()));
 			}
 		}
-		System.out.println("pokemonskillList: " + pokemonskillList);
 		return pokemonskillList;
 	}
 
