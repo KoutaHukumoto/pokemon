@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import dao.pokemonDao;
 import dao.skillDao;
 import model.pokemon;
+import model.pokemonLogic;
 
 /**
  * Servlet implementation class pokemonbattlepreparationServlet
@@ -58,52 +59,20 @@ public class pokemonbattlepreparationServlet extends HttpServlet {
 
 		ArrayList<pokemon> pokemonlist = pokemondao.findAll();
 		ArrayList<pokemon> skilllist = skilldao.findAlls();
-
-		pokemon getpokemon = null;
-		pokemon getenemypokemon = null;
 		
-		ArrayList<pokemon> getpokemonskill = null;
-		ArrayList<pokemon> getenemypokemonskill = null;
+		pokemonLogic pokemonlogic = new pokemonLogic();
 
-		for (pokemon mpokemon : pokemonlist) {
-		    if (mpokemon.getName().equals(pokemonname1)) {
-		        getpokemon = new pokemon(mpokemon.getName(), mpokemon.getType(),
-		                mpokemon.getSkill1(), mpokemon.getSkill2(), mpokemon.getSkill3(),
-		                mpokemon.getSkill4(), mpokemon.getHp(), mpokemon.getAttack(),
-		                mpokemon.getDefence(), mpokemon.getSpattack(), mpokemon.getSpdefence(),
-		                mpokemon.getSpeed());
-		    }
-
-		    if (mpokemon.getName().equals(pokemonname2)) {
-		        getenemypokemon = new pokemon(mpokemon.getName(), mpokemon.getType(),
-		                mpokemon.getSkill1(), mpokemon.getSkill2(), mpokemon.getSkill3(),
-		                mpokemon.getSkill4(), mpokemon.getHp(), mpokemon.getAttack(),
-		                mpokemon.getDefence(), mpokemon.getSpattack(), mpokemon.getSpdefence(),
-		                mpokemon.getSpeed());
-		    }
-		}
+		pokemon getpokemon = pokemonlogic.getpokemon(pokemonlist,pokemonname1);
+		pokemon getenemypokemon = pokemonlogic.getpokemon(pokemonlist,pokemonname2);
 		
-		for (pokemon skill : skilllist) {
-			if (skill.getSkillName().equals(getpokemon.getSkill1())
-					||skill.getSkillName().equals(getpokemon.getSkill2())
-					||skill.getSkillName().equals(getpokemon.getSkill3())
-					||skill.getSkillName().equals(getpokemon.getSkill4())){
-				getpokemonskill.add(new pokemon(skill.getName(),skill.getType(),skill.getDmg()));
-				
-			}
-
-			if (skill.getSkillName().equals(getenemypokemon.getSkill1())
-					||skill.getSkillName().equals(getpokemon.getSkill2())
-					||skill.getSkillName().equals(getpokemon.getSkill3())
-					||skill.getSkillName().equals(getpokemon.getSkill4())){
-				getenemypokemonskill.add(new pokemon(skill.getName(),skill.getType(),skill.getDmg()));
-
-			}
-		}
+		ArrayList<pokemon> getpokemonskill = pokemonlogic.getpokemonskill(skilllist,getpokemon);
+		ArrayList<pokemon> getenemypokemonskill = pokemonlogic.getpokemonskill(skilllist,getenemypokemon);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("getpokemon", getpokemon);
 		session.setAttribute("getenemypokemon", getenemypokemon);
+		session.setAttribute("getpokemonskill", getpokemonskill);
+		session.setAttribute("getenemypokemonskill", getenemypokemonskill);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pokemonbattle.jsp");
 		dispatcher.forward(request, response);
