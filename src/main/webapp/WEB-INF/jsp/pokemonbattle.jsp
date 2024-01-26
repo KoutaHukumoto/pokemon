@@ -62,16 +62,21 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
             if (enemyhp <= 0 || allyhp <= 0) {
                 return;
             }
+            var trun = "true";
             if (allySpeed >= enemySpeed) {
-                pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName);
-                pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill);
+                pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName,trun);
+                pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill,trun);
             } else {
-                pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill);
-                pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName);
+                pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill,trun);
+                pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName,trun);
             }
         }
 
-        function pokemonbattleLogic(name, attack,enemyname, defence, skillName) {
+        function pokemonbattleLogic(name, attack,enemyname, defence, skillName,trun) {
+
+            if(trun === "false"){
+					return;
+                }
  
             var damage = ((50*attack)/defence/50)+20;
 
@@ -87,7 +92,7 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
                 var enemyHpMeter = document.getElementById("enemyhpmeter");
                 enemyHpMeter.value = newHp;
                 if(enemyhp<=0){
-                    victory(name);
+                    victory(name,trun);
                 }
             } else {
                 var newHp = allyhp - damage;
@@ -96,12 +101,13 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
                 var allyHpMeter = document.getElementById("allyhpmeter");
                 allyHpMeter.value = newHp;
                if(allyhp<=0){
-                victory(name);
+                victory(name,trun);
                }
             }
         }
 
-        function victory(name){;
+        function victory(name,trun){
+				trun = false;
 				 var resultDiv = document.getElementById("result");
 		         var pElement = document.createElement("p");
 		            pElement.textContent = name + "の勝利！" + name +"は50の経験値獲得！";
@@ -128,13 +134,7 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
             window.location.href = "pokemonBattleServlet";
         }
 
-        function skill(name) {
-            for (var i = 0; i < skillNa.length; i++) {
-                if (name === skillNa[i]) {
-                    return skillDmg[i];
-                }
-            }
-        }
+
         
         
     </script>
