@@ -1,0 +1,39 @@
+@charset "UTF-8";
+  body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+
+        p {
+            font-size: 24px;
+            color: #ff0000;
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ff0000;
+            background-color: #ffe6e6;
+            border-radius: 10px;
+        }
+
+        .additional-message {
+            font-size: 20px;
+            color: #333333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
