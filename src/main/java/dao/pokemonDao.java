@@ -54,5 +54,41 @@ public class pokemonDao extends BaseDao {
 		return pokemonList;
 
 	}
+	
+	public ArrayList<pokemon> findname() {
+		
+		ArrayList<pokemon> pokemonnameList = new ArrayList<pokemon>();
+		
+
+		try {
+
+			this.connect();
+
+			String sql = "SELECT * FROM pokemon";
+
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String name = rs.getString("name");
+				pokemonnameList.add(new pokemon(name));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				this.disConnect();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return pokemonnameList;
+
+	}
 
 }
+
+

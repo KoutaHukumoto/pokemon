@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.TypeDao;
 import dao.pokemonDao;
 import dao.skillDao;
 import model.pokemon;
@@ -56,9 +57,11 @@ public class pokemonbattlepreparationServlet extends HttpServlet {
 
 		pokemonDao pokemondao = new pokemonDao();
 		skillDao skilldao = new skillDao();
+		TypeDao typedao = new TypeDao();
 
 		ArrayList<pokemon> pokemonlist = pokemondao.findAll();
 		ArrayList<pokemon> skilllist = skilldao.findAlls();
+		ArrayList<pokemon> Typelist = typedao.findType();
 		
 		pokemonLogic pokemonlogic = new pokemonLogic();
 
@@ -73,6 +76,7 @@ public class pokemonbattlepreparationServlet extends HttpServlet {
 		session.setAttribute("getenemypokemon", getenemypokemon);
 		session.setAttribute("getpokemonskill", getpokemonskill);
 		session.setAttribute("getenemypokemonskill", getenemypokemonskill);
+		session.setAttribute("Typelist", Typelist);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pokemonbattle.jsp");
 		dispatcher.forward(request, response);

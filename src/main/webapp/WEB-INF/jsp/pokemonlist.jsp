@@ -9,12 +9,12 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 <html>
 <head>
 <meta charset="UTF-8">
-<title>登録ポケモンリスト</title>
+<title>登録モンスターリスト</title>
 <link rel="stylesheet" href="css/list.css">
 <script src="js/base.js"></script>
 </head>
 <body>
-	<h2>登録ポケモンリスト</h2>
+	<h2>登録モンスターリスト</h2>
 	<table>
 		<tr>
 			<th>名前</th>

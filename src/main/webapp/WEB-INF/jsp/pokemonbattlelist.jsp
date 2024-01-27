@@ -10,16 +10,16 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 
 <head>
 <meta charset="UTF-8">
-<title>戦わせるポケモン一覧</title>
+<title>戦わせるモンスター一覧</title>
 <link rel="stylesheet" href="css/battlelist.css">
 <script src="js/base.js"></script>
 <script src="js/battlelist.js"></script>
 </head>
 <body>
-	<h2>戦えるポケモン一覧</h2>
+	<h2>戦えるモンスター一覧</h2>
 	<div class="battle-container">
 		<div class="pokemon-list ally">
-			<h2>味方の選択したポケモン</h2>
+			<h2>味方の選択したモンスター</h2>
 			<table class="getpokemon">
 				<tr>
 					<th class="name">名前</th>
@@ -39,7 +39,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 			</table>
 		</div>
 		<div class="pokemon-list ally">
-			<h2>敵の選択したポケモン</h2>
+			<h2>敵の選択したモンスター</h2>
 			<table class="getnpokemon">
 				<tr>
 					<th class="name">名前</th>
@@ -61,7 +61,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 	</div>
 	<div class="battle-container">
 		<div class="pokemon-list ally">
-			<h3>仲間のポケモン</h3>
+			<h3>仲間のモンスター</h3>
 			<table>
 				<tr>
 					<th class="name">名前</th>
@@ -102,7 +102,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 			</table>
 		</div>
 		<div class="pokemon-list enemy">
-			<h3>敵のポケモン</h3>
+			<h3>敵のモンスター</h3>
 			<table>
 				<tr>
 					<th>名前</th>

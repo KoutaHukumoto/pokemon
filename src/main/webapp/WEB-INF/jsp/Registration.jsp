@@ -9,21 +9,20 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 <html>
 <head>
 <meta charset="UTF-8">
-<title>オリジナルポケモン登録</title>
+<title>オリジナルモンスター登録</title>
 <link rel="stylesheet" href="css/base.css">
 <script src="js/base.js"></script>
 </head>
 
 <body>
-	<h1>オリジナルポケモン登録</h1>
+	<h1>オリジナルモンスター登録</h1>
 
 	<form action="RegistrationpokemonServlet" method="post"
 		onsubmit="return validateForm()">
 
 		<label for="name">名前(10文字以内):</label> 
 		<input type="text" id="name"name="name" required>
-		 <label for="type">タイプ:</label> <select
-			id="type" name="type" required>
+		 <label for="type">タイプ:</label> <select id="type" name="type" required>
 			<option value="ノーマル">ノーマル</option>
 			<option value="ほのお">ほのお</option>
 			<option value="みず">みず</option>
@@ -112,7 +111,8 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 	</form>
 
 	<div id="totalStats">合計種族値: 0</div>
-	<div id="Stats">種族値の合計は720まで</div>
+	<div id="Stats">各ステータス最大200,最小1</div>
+	<div id="Stats">ステータスの合計は720まで</div>
 
 	<footer>
 		<a href="pokemon.html">ホームへ戻る</a>

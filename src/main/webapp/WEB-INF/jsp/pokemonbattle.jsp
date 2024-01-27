@@ -7,157 +7,265 @@ pokemon getpokemon = (pokemon) session.getAttribute("getpokemon");
 pokemon getenemypokemon = (pokemon) session.getAttribute("getenemypokemon");
 ArrayList<pokemon> getpokemonskill = (ArrayList<pokemon>) session.getAttribute("getpokemonskill");
 ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttribute("getenemypokemonskill");
+ArrayList<pokemon> Typelist = (ArrayList<pokemon>) session.getAttribute("Typelist");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ポケモンバトル</title>
+<title>モンスターバトル</title>
 <script src="js/base.js"></script>
 <script>
+        var turn = true;
+        var highhp =  <%=getpokemon.getHp()%>/2
+        var lowhp = <%=getpokemon.getHp()%>/4
+        var highenemyhp = <%=getenemypokemon.getHp()%>/2
+        var lowenemyhp = <%=getenemypokemon.getHp()%>/4
 
-        var allyhp = <%=getpokemon.getHp()%>; 
-        var allyname = "<%=getpokemon.getName()%>";
-        var allytype = "<%=getpokemon.getType()%>";
-        var allyattack = <%=getpokemon.getAttack()%>;
-        var allydefence = <%=getpokemon.getDefence()%>;
-        var allyspattack = <%=getpokemon.getSpattack()%>;
-        var allyspdefence = <%=getpokemon.getSpdefence()%>;
-        var allySpeed = <%=getpokemon.getSpeed()%>;
-        var skill = "<%=getpokemonskill.get(0).getSkillName()%>";
+        var ally = {
+            hp: <%=getpokemon.getHp()%>,
+            name: "<%=getpokemon.getName()%>",
+            type:"<%=getpokemon.getType()%>",
+            attack: <%=getpokemon.getAttack()%>,
+            defence: <%=getpokemon.getSpdefence()%>,
+            spattack: <%=getpokemon.getSpattack()%>,
+            spdefence: <%=getpokemon.getDefence()%>,
+            speed: <%=getpokemon.getSpeed()%>,
+            skills: [
+                <%for (pokemon skill : getpokemonskill) {%>
+                    {
+                        name: "<%=skill.getSkillName()%>",
+                        dmg: <%=skill.getDmg()%>,
+                        type: "<%=skill.getType()%>",
+                        tag: <%=skill.getTag()%>
+                    },
+                <%}%>
+            ]
+        };
 
-        var enemyhp = <%=getenemypokemon.getHp()%>;
-        var enemyname = "<%=getenemypokemon.getName()%>";
-        var enemytype = "<%=getenemypokemon.getType()%>";
-        var enemyattack = <%=getenemypokemon.getAttack()%>;
-        var enemydefence = <%=getenemypokemon.getDefence()%>;
-        var enemyspattack = <%=getenemypokemon.getSpattack()%>;
-        var enemyspdefence = <%=getenemypokemon.getSpdefence()%>;
-        var enemySpeed = <%=getenemypokemon.getSpeed()%>;
-        var enemyskill = "<%=getenemypokemon.getSkill1()%>"; 
+        var enemy = {
+            hp: <%=getenemypokemon.getHp()%>,
+            name: "<%=getenemypokemon.getName()%>",
+            type:"<%=getenemypokemon.getType()%>",
+            attack: <%=getenemypokemon.getAttack()%>,
+            defence: <%=getenemypokemon.getDefence()%>,
+            spattack: <%=getpokemon.getSpattack()%>,
+            spdefence: <%=getpokemon.getDefence()%>,
+            speed: <%=getenemypokemon.getSpeed()%>,
+            skills: [
+                <%for (pokemon skill : getenemypokemonskill) {%>
+                    {
+                        name: "<%=skill.getSkillName()%>",
+                        dmg: <%=skill.getDmg()%>,
+                        type: "<%=skill.getType()%>",
+                        tag: <%=skill.getTag()%>
+                    },
+                <%}%>
+            ]
+        };
 
-        var skillNa = [
-            <% for (pokemon skill : getpokemonskill) { %>
-                "<%= skill.getSkillName() %>",
-            <% } %>
-        ];
-
-        var skillDmg = [
-            <% for (pokemon skill : getpokemonskill) { %>
-                <%= skill.getDmg() %>,
-            <% } %>
-        ];
-
-        var skillType = [
-            <% for (pokemon skill : getpokemonskill) { %>
-                "<%= skill.getType() %>",
-            <% } %>
-        ];
-
-
-
-
+        var typelist={
+                types:[
+                	<%for (pokemon typelist : Typelist) {%>
+                	{
+                		aType:"<%=typelist.getAttackType()%>",
+                		dType:"<%=typelist.getDefenceType()%>",
+                		result:<%=typelist.getResult()%>
+                	},
+                	<%}%>
+					]
+                }
 
         function useSkill(skillName) {
-            if (enemyhp <= 0 || allyhp <= 0) {
+            if (enemy.hp <= 0 || ally.hp <= 0) {
                 return;
             }
-            var trun = "true";
-            if (allySpeed >= enemySpeed) {
-                pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName,trun);
-                pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill,trun);
+            
+            var button1 = document.getElementById("skillbutton1");
+            button1.disabled = true;
+            var button2 = document.getElementById("skillbutton2");
+            button2.disabled = true;
+            var button3 = document.getElementById("skillbutton3");
+            button3.disabled = true;
+            var button4 = document.getElementById("skillbutton4");
+            button4.disabled = true;
+
+            var enemySkill = selectenemyskill();
+
+            if (ally.speed >= enemy.speed) {
+                pokemonbattleLogic(ally, enemy, skillName);
+                if (enemy.hp <= 0) {
+                    return;
+                }
+                setTimeout(function() {
+                	pokemonbattleLogic(enemy, ally, enemySkill);
+                    button1.disabled = false;
+                    button2.disabled = false;
+                    button3.disabled = false;
+                    button4.disabled = false;
+                	}, 500);
             } else {
-                pokemonbattleLogic(enemyname, enemyattack, allyname, allydefence, enemyskill,trun);
-                pokemonbattleLogic(allyname, allyattack, enemyname, enemydefence, skillName,trun);
+                pokemonbattleLogic(enemy, ally, enemySkill);
+                if (ally.hp <= 0) {
+                    return;
+                }
+                setTimeout(function() {
+                pokemonbattleLogic(ally, enemy, skillName);
+                button1.disabled = false;
+                button2.disabled = false;
+                button3.disabled = false;
+                button4.disabled = false;
+                }, 500);
             }
         }
 
-        function pokemonbattleLogic(name, attack,enemyname, defence, skillName,trun) {
-
-            if(trun === "false"){
-					return;
-                }
- 
-            var damage = ((50*attack)/defence/50)+20;
-
+        function pokemonbattleLogic(attacker, defender, skillName) {
+            var skill = selectSkill(skillName, attacker.skills);
+            var multiple = magnification(skill.type,defender.type);
+            var damage = dmg(skill.tag, attacker, defender, multiple,skill.dmg);
             var resultDiv = document.getElementById("result");
             var pElement = document.createElement("p");
-            pElement.textContent = name + "の" + skillName + "！"+ enemyname +"に" + damage + "のダメージ！";
+            var victoryMessage = attacker.name + "の「" + skill.name + "」！" + defender.name + "に" + damage + "のダメージ！";
             resultDiv.appendChild(pElement);
+            displayTextWithDelay(pElement, victoryMessage, 10, 100);
+            
+            defender.hp = defender.hp - damage;
+            defender.hp = Math.max(defender.hp, 0);
 
-            if (name === allyname) { 
-                var newHp = enemyhp - damage;
-                enemyhp = newHp;
-            	newHp = Math.max(newHp, 0);
-                var enemyHpMeter = document.getElementById("enemyhpmeter");
-                enemyHpMeter.value = newHp;
-                if(enemyhp<=0){
-                    victory(name,trun);
-                }
+            var hpMeterId;
+            var highhp;
+            var lowhp;
+            if (attacker === ally) {
+                hpMeterId = "enemyhpmeter";
+                highhp = Math.floor(<%=getenemypokemon.getHp()%>*0.5);
+                lowhp = Math.floor(<%=getenemypokemon.getHp()%>*0.2);
             } else {
-                var newHp = allyhp - damage;
-                allyhp = newHp;
-            	newHp = Math.max(newHp, 0);
-                var allyHpMeter = document.getElementById("allyhpmeter");
-                allyHpMeter.value = newHp;
-               if(allyhp<=0){
-                victory(name,trun);
-               }
+                hpMeterId = "allyhpmeter";
+                highhp = Math.floor(<%=getpokemon.getHp()%>*0.5);
+                lowhp = Math.floor(<%=getpokemon.getHp()%>*0.2);
+            }
+            var hpMeter = document.getElementById(hpMeterId);
+            hpMeter.value = Math.max(defender.hp, 0);
+            console.log(highhp);
+            hpMeter.high = highhp;
+            console.log(lowhp);
+            hpMeter.low = lowhp;
+            
+            var nowhp;
+            if (attacker === ally) {
+                nowhp = "enemynowHP";
+            } else {
+                nowhp = "allynowHP";
+            }
+            
+            var NowHpElement = document.getElementById(nowhp);
+            NowHpElement.textContent = Math.max(defender.hp, 0);
+
+            if (defender.hp <= 0) {
+            	setTimeout(function() {
+                victory(attacker.name);
+            }, 500);
             }
         }
 
-        function victory(name,trun){
-				trun = false;
-				 var resultDiv = document.getElementById("result");
-		         var pElement = document.createElement("p");
-		            pElement.textContent = name + "の勝利！" + name +"は50の経験値獲得！";
-		            resultDiv.appendChild(pElement);
-		            var home = document.querySelector(".home");
-		            var homediv = document.createElement("div");
-		            var startNewBattleButton = document.createElement("button");
-		            startNewBattleButton.textContent = "もう一度戦う";
-		            startNewBattleButton.onclick = startNewBattle;
-		            homediv.appendChild(startNewBattleButton);
-		            home.appendChild(homediv);
-		            var selectNewBattleButton = document.createElement("button");
-		            selectNewBattleButton.textContent = "ポケモン選択に戻る";
-		            selectNewBattleButton.onclick = selectpokemon;
-		            homediv.appendChild(selectNewBattleButton);
-		            home.appendChild(homediv);
-		            return;
-          }
-        
-        function startNewBattle() {
-            location.reload(); 
+        function victory(name) {
+            var resultDiv = document.getElementById("result");
+            var pElement = document.createElement("p");
+            var victoryMessage = name + "の勝利！" + name + "は50の経験値獲得！";
+            resultDiv.appendChild(pElement);
+            displayTextWithDelay(pElement, victoryMessage, 10, 100);
+            var home = document.querySelector(".home");
+            var homediv = document.createElement("div");
+            var startNewBattleButton = document.createElement("button");
+            startNewBattleButton.textContent = "もう一度戦う";
+            startNewBattleButton.onclick = startNewBattle;
+            homediv.appendChild(startNewBattleButton);
+            var selectNewBattleButton = document.createElement("button");
+            selectNewBattleButton.textContent = "モンスター選択に戻る";
+            selectNewBattleButton.onclick = selectpokemon;
+            homediv.appendChild(selectNewBattleButton);
+            home.appendChild(homediv);
+            var fbutton1 = document.getElementById("skillbutton1");
+            fbutton1.disabled = false;
+            var fbutton2 = document.getElementById("skillbutton2");
+            fbutton2.disabled = false;
+            var fbutton3 = document.getElementById("skillbutton3");
+            fbutton3.disabled = false;
+            var fbutton4 = document.getElementById("skillbutton4");
+            fbutton4.disabled = false;
         }
+
+        function startNewBattle() {
+            location.reload();
+        }
+
         function selectpokemon() {
             window.location.href = "pokemonBattleServlet";
         }
 
+        function selectSkill(skillName, skills) {
+            for (var i = 0; i < skills.length; i++) {
+                if (skillName === skills[i].name) {
+                    return skills[i];
+                }
+            }
+        }
 
-        
-        
+        function selectenemyskill() {
+            var random = Math.floor(Math.random() * 4);
+            return enemy.skills[random].name;
+        }
+
+        function magnification(type,defencetype){
+            for (var i = 0; i < typelist.types.length; i++) {
+                if (typelist.types[i].aType == type && typelist.types[i].dType == defencetype) {
+                    return typelist.types[i].result;
+                }
+            }
+            return 1; 
+            }
+
+        function dmg(skill, attacker, defender, multiple,dmg) {
+            if (skill == 1) {
+            	 return Math.floor((((dmg * attacker.attack) / defender.defence)/ 50 + 20) * multiple);
+            } else {
+            	 return  Math.floor((((dmg * attacker.spattack)/ defender.spdefence)/ 50 + 20) * multiple);
+            }
+        }
+
+        function displayTextWithDelay(element, text, interval, delay) {
+            var index = 0;
+            function displayNextCharacter() {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index++;
+                    setTimeout(displayNextCharacter, interval);
+                }
+            }
+            setTimeout(displayNextCharacter, delay);
+        }
     </script>
 <link rel="stylesheet" href="css/battle.css">
 </head>
 <body>
 	<div class="pokemonally">
-		<h3>仲間のポケモン</h3>
+		<h3>仲間のモンスター</h3>
 		<div class="namebox">
 			<h3>
 				名前:<%=getpokemon.getName()%>
 				HP：
-				<meter low="30" high="70" optimum="80"
+				<meter low="30" high="70" optimum="<%=getpokemon.getHp()%>"
 					style="width: 180px; height: 25px;" value="<%=getpokemon.getHp()%>"
 					min="0" max="<%=getpokemon.getHp()%>" id="allyhpmeter"></meter>
+					<span id="allynowHP"><%=getpokemon.getHp()%></span>/<span><%=getpokemon.getHp()%></span>
 			</h3>
 		</div>
-		<img class="allyimg" src="画像/pika○○2.jpg" alt="ポケモン">
+		<img class="allyimg" src="画像/pika○○2.jpg" alt="モンスター">
 		<div class="skill">
-			<button onclick="useSkill('<%=getpokemon.getSkill1()%>')"><%=getpokemon.getSkill1()%></button>
-			<button onclick="useSkill('<%=getpokemon.getSkill2()%>')"><%=getpokemon.getSkill2()%></button>
-			<button onclick="useSkill('<%=getpokemon.getSkill3()%>')"><%=getpokemon.getSkill3()%></button>
-			<button onclick="useSkill('<%=getpokemon.getSkill4()%>')"><%=getpokemon.getSkill4()%></button>
+			<button onclick="useSkill('<%=getpokemon.getSkill1()%>')" id = "skillbutton1"><%=getpokemon.getSkill1()%></button>
+			<button onclick="useSkill('<%=getpokemon.getSkill2()%>')" id = "skillbutton2"><%=getpokemon.getSkill2()%></button>
+			<button onclick="useSkill('<%=getpokemon.getSkill3()%>')" id = "skillbutton3"><%=getpokemon.getSkill3()%></button>
+			<button onclick="useSkill('<%=getpokemon.getSkill4()%>')" id = "skillbutton4"><%=getpokemon.getSkill4()%></button>
 		</div>
 		<div class="pokemonallies">
 			<table>
@@ -187,18 +295,19 @@ ArrayList<pokemon> getenemypokemonskill = (ArrayList<pokemon>) session.getAttrib
 	</div>
 
 	<div class="pokemonenemy">
-		<h3>敵のポケモン</h3>
+		<h3>敵のモンスター</h3>
 		<div class="enemynamebox">
 			<h3>
 				名前:<%=getenemypokemon.getName()%>
 				HP：
-				<meter low="30" high="70" optimum="80"
+				<meter low="30" high="70" optimum="<%=getenemypokemon.getHp()%>"
 					style="width: 180px; height: 25px;"
 					value="<%=getenemypokemon.getHp()%>" min="0"
 					max="<%=getenemypokemon.getHp()%>" id="enemyhpmeter"></meter>
+					<span id="enemynowHP"><%=getenemypokemon.getHp()%></span>/<span><%=getenemypokemon.getHp()%></span>
 			</h3>
 		</div>
-		<img class="enemyimg" src="画像/pika○○.jpg" alt="敵ポケモン">
+		<img class="enemyimg" src="画像/pika○○.jpg" alt="敵モンスター">
 		<div class="enemyskill">
 			<button><%=getenemypokemon.getSkill1()%></button>
 			<button><%=getenemypokemon.getSkill2()%></button>

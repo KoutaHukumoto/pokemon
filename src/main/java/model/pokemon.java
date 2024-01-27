@@ -4,10 +4,15 @@ import java.io.Serializable;
 
 public class pokemon implements Serializable {
 
-	private String name, type, Skill1, Skill2, Skill3, Skill4,SkillName;
+	private String name, type, Skill1, Skill2, Skill3, Skill4,SkillName,attackType,defenceType;
 
-	private int id, hp, attack, defence, spattack, spdefence, speed,dmg;
+	private int id, hp, attack, defence, spattack, spdefence, speed,dmg,tag;
+	
+	private double Result;
 
+	public pokemon(String name) {
+		this.name = name;
+	}
 	
 	public pokemon(int id,String name, String type, String Skill1, String Skill2, String Skill3, String Skill4, int hp,
 			int attack,
@@ -43,10 +48,17 @@ public class pokemon implements Serializable {
 		this.speed = speed;
 	}
 	
-	public pokemon(String SkillName,String type, int dmg) {
+	public pokemon(String SkillName,String type, int dmg,int tag) {
 		this.SkillName = SkillName;
 		this.type = type;
 	    this.dmg = dmg;
+	    this.tag = tag;
+	}
+	
+	public pokemon(String attackType,String defenceType,double Result) {
+		this.attackType = attackType;
+		this.defenceType = defenceType;
+		this.Result = Result;
 	}
 
 	public String getName() {
@@ -163,6 +175,30 @@ public class pokemon implements Serializable {
 	}
 	public void setDmg(int dmg) {
 		this.dmg = dmg;
+	}
+	public int getTag() {
+		return tag;
+	}
+	public void setTag(int tag) {
+		this.tag = tag;
+	}
+	public String getAttackType() {
+		return attackType;
+	}
+	public void setAttackType(String attackType) {
+		this.attackType = attackType;
+	}
+	public String getDefenceType() {
+		return defenceType;
+	}
+	public void setDefenceType(String defenceType) {
+		this.defenceType = defenceType;
+	}
+	public double getResult() {
+		return Result;
+	}
+	public void setResult(double Result) {
+		this.Result = Result;
 	}
 
 }

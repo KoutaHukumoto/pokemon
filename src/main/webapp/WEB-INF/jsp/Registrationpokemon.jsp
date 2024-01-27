@@ -2,18 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.pokemon"%>
 <%
-    pokemon pokemon = (pokemon) request.getAttribute("pokemon");
+    pokemon pokemon = (pokemon) session.getAttribute("pokemon");
 %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>オリジナルポケモン登録</title>
+    <title>オリジナルモンスター登録</title>
     <link rel="stylesheet" href="css/base.css">
     <script src="js/base.js"></script>
 </head>
 <body>
-    <h2>ポケモンが登録されました</h2>
+    <h2>モンスターが登録されました</h2>
     <p>名前: <%=pokemon.getName()%></p>
     <p>タイプ: <%=pokemon.getType()%></p>
     <p>技1: <%=pokemon.getSkill1()%></p>

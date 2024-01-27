@@ -17,7 +17,7 @@ public class skillDao extends BaseDao{
 
 			this.connect();
 
-			String sql = "SELECT s_name,s_type,damage FROM skill";
+			String sql = "SELECT s_name,s_type,damage,tag FROM skill";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
@@ -27,8 +27,8 @@ public class skillDao extends BaseDao{
 				String SkillName = rs.getString("s_name");
 				String type = rs.getString("s_type");
 				int dmg = rs.getInt("damage");
-				
-				pokemonList.add(new pokemon(SkillName, type, dmg));
+				int tag = rs.getInt("tag");
+				pokemonList.add(new pokemon(SkillName, type, dmg,tag));
 			}
 
 		} catch (Exception e) {

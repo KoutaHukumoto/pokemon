@@ -28,7 +28,7 @@ public class pokemonLogic {
 				    skill.getSkillName().equals(getpokemon.getSkill2()) ||
 				    skill.getSkillName().equals(getpokemon.getSkill3()) ||
 				    skill.getSkillName().equals(getpokemon.getSkill4()))  {
-				pokemonskillList.add(new pokemon(skill.getSkillName(), skill.getType(), skill.getDmg()));
+				pokemonskillList.add(new pokemon(skill.getSkillName(), skill.getType(), skill.getDmg(),skill.getTag()));
 			}
 		}
 		return pokemonskillList;
