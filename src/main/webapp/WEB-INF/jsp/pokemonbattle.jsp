@@ -17,10 +17,6 @@ ArrayList<pokemon> Typelist = (ArrayList<pokemon>) session.getAttribute("Typelis
 <script src="js/base.js"></script>
 <script>
         var turn = true;
-        var highhp =  <%=getpokemon.getHp()%>/2
-        var lowhp = <%=getpokemon.getHp()%>/4
-        var highenemyhp = <%=getenemypokemon.getHp()%>/2
-        var lowenemyhp = <%=getenemypokemon.getHp()%>/4
 
         var ally = {
             hp: <%=getpokemon.getHp()%>,
