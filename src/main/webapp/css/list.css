@@ -48,7 +48,7 @@ th {
 }
 
 th.name {
-    width: 120px; /* 10文字分の幅 */
+    width: 120px; 
 }
 th.type{
 	width: 90px;

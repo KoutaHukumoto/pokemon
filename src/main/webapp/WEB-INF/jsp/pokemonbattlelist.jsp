@@ -14,6 +14,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 <link rel="stylesheet" href="css/battlelist.css">
 <script src="js/base.js"></script>
 <script src="js/battlelist.js"></script>
+<script src="js/sorttable.js"></script>
 </head>
 <body>
 	<h2>戦えるモンスター一覧</h2>
@@ -62,7 +63,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 	<div class="battle-container">
 		<div class="pokemon-list ally">
 			<h3>仲間のモンスター</h3>
-			<table>
+			<table class="allypokemon">
 				<tr>
 					<th class="name">名前</th>
 					<th class="type">タイプ</th>
@@ -70,13 +71,13 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 					<th class="skill">技2</th>
 					<th class="skill">技3</th>
 					<th class="skill">技4</th>
-					<th class="stats">HP</th>
-					<th class="stats">攻撃</th>
-					<th class="stats">防御</th>
-					<th class="stats">特攻</th>
-					<th class="stats">特防</th>
-					<th class="stats">速さ</th>
-					<th>選択</th>
+					<th class="stats"><button onclick="sortTable('allypokemon',6, 'asc')">▲</button>HP<button onclick="sortTable('allypokemon',6, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('allypokemon',7, 'asc')">▲</button>攻撃  <button onclick="sortTable('allypokemon',7, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('allypokemon',8, 'asc')">▲</button>防御<button onclick="sortTable('allypokemon',8, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('allypokemon',9, 'asc')">▲</button>特攻<button onclick="sortTable('allypokemon',9, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('allypokemon',10, 'asc')">▲</button>特防<button onclick="sortTable('allypokemon',10, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('allypokemon',11, 'asc')">▲</button>速さ<button onclick="sortTable('allypokemon',11, 'desc')">▼</button></th>
+					<th class="select">選択</th>
 				</tr>
 				<%
 				for (pokemon mpokemon : pokemonlist) {
@@ -103,21 +104,21 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 		</div>
 		<div class="pokemon-list enemy">
 			<h3>敵のモンスター</h3>
-			<table>
+			<table class="enemypokemon">
 				<tr>
-					<th>名前</th>
-					<th>タイプ</th>
-					<th>技1</th>
-					<th>技2</th>
-					<th>技3</th>
-					<th>技4</th>
-					<th>HP</th>
-					<th>攻撃</th>
-					<th>防御</th>
-					<th>特攻</th>
-					<th>特防</th>
-					<th>速さ</th>
-					<th>選択</th>
+					<th class="name">名前</th>
+					<th class="type">タイプ</th>
+					<th class="skill">技1</th>
+					<th class="skill">技2</th>
+					<th class="skill">技3</th>
+					<th class="skill">技4</th>
+					<th class="stats"><button onclick="sortTable('enemypokemon',6, 'asc')">▲</button>HP<button onclick="sortTable('enemypokemon',6, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('enemypokemon',7, 'asc')">▲</button>攻撃  <button onclick="sortTable('enemypokemon',7, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('enemypokemon',8, 'asc')">▲</button>防御<button onclick="sortTable('enemypokemon',8, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('enemypokemon',9, 'asc')">▲</button>特攻<button onclick="sortTable('enemypokemon',9, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('enemypokemon',10, 'asc')">▲</button>特防<button onclick="sortTable('enemypokemon',10, 'desc')">▼</button></th>
+					<th class="stats"><button onclick="sortTable('enemypokemon',11, 'asc')">▲</button>速さ<button onclick="sortTable('enemypokemon',11, 'desc')">▼</button></th>
+					<th class="select">選択</th>
 				</tr>
 				<%
 				for (pokemon npokemon : pokemonlist) {

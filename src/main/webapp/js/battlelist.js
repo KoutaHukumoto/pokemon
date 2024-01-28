@@ -2,6 +2,7 @@
  * 
  */
 
+
 function selectPokemon(pokemonId) {
 	var selectedRow = document.querySelector('button[data-pokemon-id="' + pokemonId + '"]').closest('tr');
 
@@ -44,6 +45,7 @@ function selectPokemon(pokemonId) {
 	speedCell.innerText = speed;
 
 }
+
 
 function selectnPokemon(pokemonId) {
 	var selectedRow = document.querySelector('button[data-pokemon-id="' + pokemonId + '"]').closest('tr');
