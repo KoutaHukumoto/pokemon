@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>オリジナルモンスター登録</title>
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/Registration.css">
     <script src="js/base.js"></script>
 </head>
 <body>

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/* base.css */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #e8f0fe; /* 明るい青色の背景 */
+    color: #424242;
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h2 {
+    color: #ff9800; /* 明るいオレンジ色 */
+    margin-bottom: 20px;
+}
+
+p {
+    background-color: #ffffff;
+    border: 2px solid #ff9800; /* オレンジ色のボーダー */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* ソフトな影を追加 */
+    margin: 10px 0;
+    width: 100%;
+    max-width: 600px; /* 最大幅を制限 */
+}
+
+a {
+    background-color: #ff9800;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 20px auto;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+a:hover {
+    background-color: #ffb74d; /* ホバー時に明るいオレンジ色に変化 */
+    color: #fff;
+}
+
+/* レスポンシブデザイン */
+@media (min-width: 768px) {
+    p {
+        width: 80%; /* より広い画面では、幅を広げる */
+    }
+}

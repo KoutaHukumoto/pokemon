@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>同一ポケモン</title>
-    <style rel="stylesheet" href="css/stop.css"></style>
+    <link rel="stylesheet" href="css/stop.css">
 </head>
 <body>
     <p class="bounce">申し訳ございませんが<%=namepokemon.getName()%>は既に存在します。</p>

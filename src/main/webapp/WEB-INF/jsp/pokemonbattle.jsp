@@ -125,47 +125,20 @@ ArrayList<pokemon> Typelist = (ArrayList<pokemon>) session.getAttribute("Typelis
             var damage = dmg(skill.tag, attacker, defender, multiple,skill.dmg);
             var resultDiv = document.getElementById("result");
             var pElement = document.createElement("p");
-            var victoryMessage = attacker.name + "の「" + skill.name + "」！" + defender.name + "に" + damage + "のダメージ！";
+            var damageMessage = attacker.name + "の「" + skill.name + "」！" + defender.name + "に" + damage + "のダメージ！";
             resultDiv.appendChild(pElement);
-            displayTextWithDelay(pElement, victoryMessage, 10, 100);
             
             defender.hp = defender.hp - damage;
             defender.hp = Math.max(defender.hp, 0);
-
-            var hpMeterId;
-            var highhp;
-            var lowhp;
-            if (attacker === ally) {
-                hpMeterId = "enemyhpmeter";
-                highhp = Math.floor(<%=getenemypokemon.getHp()%>*0.5);
-                lowhp = Math.floor(<%=getenemypokemon.getHp()%>*0.2);
-            } else {
-                hpMeterId = "allyhpmeter";
-                highhp = Math.floor(<%=getpokemon.getHp()%>*0.5);
-                lowhp = Math.floor(<%=getpokemon.getHp()%>*0.2);
-            }
-            var hpMeter = document.getElementById(hpMeterId);
-            hpMeter.value = Math.max(defender.hp, 0);
-            console.log(highhp);
-            hpMeter.high = highhp;
-            console.log(lowhp);
-            hpMeter.low = lowhp;
-            
-            var nowhp;
-            if (attacker === ally) {
-                nowhp = "enemynowHP";
-            } else {
-                nowhp = "allynowHP";
-            }
-            
-            var NowHpElement = document.getElementById(nowhp);
-            NowHpElement.textContent = Math.max(defender.hp, 0);
-
-            if (defender.hp <= 0) {
-            	setTimeout(function() {
-                victory(attacker.name);
-            }, 500);
-            }
+            var valuehp = (attacker === ally) ? <%=getenemypokemon.getHp()%> : <%=getpokemon.getHp()%>;
+            displayTextWithDelay(pElement, damageMessage, 10, 100, function() {
+                updateHpMeter(attacker, defender, valuehp); 
+                if (defender.hp <= 0) {
+                    setTimeout(function() {
+                        victory(attacker.name);
+                    }, 500);
+                }
+            });
         }
 
         function victory(name) {
@@ -233,13 +206,30 @@ ArrayList<pokemon> Typelist = (ArrayList<pokemon>) session.getAttribute("Typelis
             }
         }
 
-        function displayTextWithDelay(element, text, interval, delay) {
+        function updateHpMeter(attacker, defender, defenderInitialHp) {
+            var hpMeterId = (attacker === ally) ? "enemyhpmeter" : "allyhpmeter";
+            var highhp = Math.floor(defenderInitialHp * 0.5);
+            var lowhp = Math.floor(defenderInitialHp * 0.2);
+
+            var hpMeter = document.getElementById(hpMeterId);
+            hpMeter.value = Math.max(defender.hp, 0);
+            hpMeter.high = highhp;
+            hpMeter.low = lowhp;
+
+            var nowhp = (attacker === ally) ? "enemynowHP" : "allynowHP";
+            var NowHpElement = document.getElementById(nowhp);
+            NowHpElement.textContent = Math.max(defender.hp, 0);
+        }
+
+        function displayTextWithDelay(element, text, interval, delay, callback) {
             var index = 0;
             function displayNextCharacter() {
                 if (index < text.length) {
                     element.textContent += text[index];
                     index++;
                     setTimeout(displayNextCharacter, interval);
+                } else if (callback) {
+                    callback();
                 }
             }
             setTimeout(displayNextCharacter, delay);
