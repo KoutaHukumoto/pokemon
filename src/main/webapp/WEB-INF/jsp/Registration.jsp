@@ -20,7 +20,7 @@ ArrayList<pokemon> pokemonlist = (ArrayList<pokemon>) session.getAttribute("poke
 	<form action="RegistrationpokemonServlet" method="post"
 		onsubmit="return validateForm()">
 
-		<label for="name">名前(10文字以内):</label> 
+		<label for="name">名前(5文字以内):</label> 
 		<input type="text" id="name"name="name" required>
 		 <label for="type">タイプ:</label> <select id="type" name="type" required>
 			<option value="ノーマル">ノーマル</option>

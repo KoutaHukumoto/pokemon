@@ -7,8 +7,8 @@
         const nameInput = document.getElementById("name");
         const nameValue = nameInput.value.trim(); 
 
-        if (nameValue.length > 10) {
-            alert("名前は10文字以内で入力してください。");
+        if (nameValue.length > 5) {
+            alert("名前は5文字以内で入力してください。");
             return false; 
         }
 
