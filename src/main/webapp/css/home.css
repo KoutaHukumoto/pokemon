@@ -6,9 +6,11 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	background-image: url("../画像/thimo-pedersen-dip9IIwUK6w-unsplash.jpg");
+	background-image: url("../画像/top.jpg");
 	background-size: cover;
 	background-position: center;
+	
+	
 	background-attachment: fixed;
 	margin: 0;
 	padding: 0;

@@ -246,7 +246,7 @@ ArrayList<pokemon> Typelist = (ArrayList<pokemon>) session.getAttribute("Typelis
 					<span id="allynowHP"><%=getpokemon.getHp()%></span>/<span><%=getpokemon.getHp()%></span>
 			</h3>
 		</div>
-		<img class="allyimg" src="画像/pika○○2.jpg" alt="モンスター">
+		<img class="allyimg" src="画像/mon.jpg" alt="モンスター">
 		<div class="skill">
 			<button onclick="useSkill('<%=getpokemon.getSkill1()%>')" id = "skillbutton1"><%=getpokemon.getSkill1()%></button>
 			<button onclick="useSkill('<%=getpokemon.getSkill2()%>')" id = "skillbutton2"><%=getpokemon.getSkill2()%></button>
@@ -293,7 +293,7 @@ ArrayList<pokemon> Typelist = (ArrayList<pokemon>) session.getAttribute("Typelis
 					<span id="enemynowHP"><%=getenemypokemon.getHp()%></span>/<span><%=getenemypokemon.getHp()%></span>
 			</h3>
 		</div>
-		<img class="enemyimg" src="画像/pika○○.jpg" alt="敵モンスター">
+		<img class="enemyimg" src="画像/enemy.jpg" alt="敵モンスター">
 		<div class="enemyskill">
 			<button><%=getenemypokemon.getSkill1()%></button>
 			<button><%=getenemypokemon.getSkill2()%></button>

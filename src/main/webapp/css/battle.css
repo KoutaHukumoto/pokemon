@@ -3,12 +3,13 @@
 
 body {
 	display: flex;
-	background-image: url("../画像/neom-AC3T7tvwPrY-unsplash.jpg");
+	background-image: url("../画像/stage.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
 	margin: 0;
 	padding: 0;
+	min-height: 100vh;
 }
 
 .pokemoncontainer {

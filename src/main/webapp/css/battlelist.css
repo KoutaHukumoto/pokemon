@@ -30,7 +30,6 @@ h2 {
     width: 75%;
     margin-bottom: 20px;
     overflow-y: auto;
-    overflow-x: auto; 
     max-height: 400px;
 }
 
@@ -42,7 +41,7 @@ table {
 }
 
 .allypokemon{
-	width: 150%;
+	width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
     font-size: 16px;
@@ -58,7 +57,7 @@ table {
 }
 
 .enemypokemon{
-	width: 150%;
+	width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
     font-size: 16px;
